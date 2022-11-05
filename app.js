@@ -18,7 +18,7 @@ const operationType = String(req.body.operation_type);
 const x =Number(req.body.x);
 const y =Number(req.body.y);
 
-  if(operationType.includes("add","addition" "+")){
+  if(operationType.includes("add","addition","+")){
       const result = x + y
       res.send({
         "slackUsername":"TG_kommands",
@@ -26,7 +26,7 @@ const y =Number(req.body.y);
         "operation_type":operationType
 
       })
-    }else if(operationType.includes("subtract","minus","deduct","subtraction" "-")){
+    }else if(operationType.includes("subtract","minus","deduct","subtraction","-")){
         const result = x - y
         res.send({
           "slackUsername":"TG_kommands",
@@ -34,7 +34,7 @@ const y =Number(req.body.y);
           "operation_type":operationType,
 
         })
-      }else if(operationType.includes("multiply","multiplication" " *")){
+      }else if(operationType.includes("multiply","multiplication"," *")){
           const result = x * y
           res.send({
             "slackUsername":"TG_kommands",
