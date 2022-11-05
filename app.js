@@ -34,7 +34,7 @@ const y =Number(req.body.y);
           "operation_type":operationType = "subtraction"
 
         })
-      }else if(operationType == "-" || operationType.includes("multiply","multiplication", )){
+      }else if(operationType == "*" || operationType.includes("multiply","multiplication", )){
           const result = x * y
           res.send({
             "slackUsername":"TG_kommands",
