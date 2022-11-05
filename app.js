@@ -14,32 +14,32 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.post("/",(req,res) => {
 
-const operationType = String(req.body.operation_type);
+let operationType = req.body.operation_type;
 const x =Number(req.body.x);
 const y =Number(req.body.y);
 
-  if(operationType.includes("add","addition",+)){
+  if(operationType == "+" || operationType.includes("add","addition")){
       const result = x + y
       res.send({
         "slackUsername":"TG_kommands",
-        "result":result,
-        "operation_type":operationType
+        "result":result ,
+        "operation_type":operationType = "addition"
 
       })
-    }else if(operationType.includes("subtract","minus","deduct","subtraction",-)){
+    }else if( operationType == "-" || operationType.includes("subtract","minus","deduct","subtraction") ){
         const result = x - y
         res.send({
           "slackUsername":"TG_kommands",
           "result":result,
-          "operation_type":operationType,
+          "operation_type":operationType = "subtraction"
 
         })
-      }else if(operationType.includes("multiply","multiplication", *)){
+      }else if(operationType == "-" || operationType.includes("multiply","multiplication", )){
           const result = x * y
           res.send({
             "slackUsername":"TG_kommands",
             "result":result,
-            "operation_type":operationType
+            "operation_type":operationType ="multiplication"
 
           })
         }else{
