@@ -74,12 +74,15 @@ const y =Number(req.body.y);
 
 
 
+let port = process.env.PORT;
+if(port == null || port ==""){
+  port = 3000;
+}
 
 
 
 
 
-
-app.listen(3000,() => {
+app.listen(port,() => {
   console.log(" Server Started on port 3000");
 })
