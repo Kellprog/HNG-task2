@@ -12,43 +12,63 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 
+
+
+
 app.post("/",(req,res) => {
+let operation = req.body;
 
-let operationType = req.body.operation_type;
-const x =Number(req.body.x);
-const y =Number(req.body.y);
+let operations = {
+   operation_type :Object.freeze({
 
-  if(operationType == "+" || operationType.includes("add","addition")){
-      const result = x + y
+    enum:{
+      addition:["add", "addition", "sum"],
+      subtraction:["subtract","subtraction","minus","deduct"],
+      multiplication:["multiply","multiplication","product"],
+    },
+  }),
+
+  x:2,
+  y:2
+
+};
+
+let result;
+let foundOperation;
+
+
+     if(operation == operations.operation_type.enum.addition){
+        result = operations.x + operations.y;
+        foundOperation = "addition"
+       res.send({
+         slackUsername:"TG_kommands",
+         result:result,
+         operation_type:foundOperation
+       })
+
+
+
+
+     }else if(operation == operations.operation_type.enum.subtraction){
+       result = operations.x - operations.y;
+         foundOperation = "subtraction"
+
       res.send({
-        "slackUsername":"TG_kommands",
-        "result":result ,
-        "operation_type":operationType = "addition"
-
+        slackUsername:"TG_kommands",
+        result:result,
+        operation_type:foundOperation
       })
-    }else if( operationType == "-" || operationType.includes("subtract","minus","deduct","subtraction") ){
-        const result = x - y
-        res.send({
-          "slackUsername":"TG_kommands",
-          "result":result,
-          "operation_type":operationType = "subtraction"
-
-        })
-      }else if(operationType == "*" || operationType.includes("multiply","multiplication", )){
-          const result = x * y
-          res.send({
-            "slackUsername":"TG_kommands",
-            "result":result,
-            "operation_type":operationType ="multiplication"
-
-          })
-        }else{
-          res.status(400)
-          res.send("Invalid!")
-        }
-
-
-
+    }else if(operation == operations.operation_type.enum.multiplication){
+       result = operations.x * operations.y
+         foundOperation = "multiplication"
+      res.send({
+        slackUsername:"TG_kommands",
+        result:result,
+        operation_type:foundOperation
+      })
+    }else{
+      res.status(400)
+    }
 
 
 
